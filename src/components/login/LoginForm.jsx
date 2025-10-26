@@ -3,7 +3,7 @@ import SocialIcon from "../common/SocialIcon";
 
 const LoginForm = () => {
   return (
-    <div className="flex justify-center items-center min-h-[90vh] flex-col">
+    <div className="flex justify-center items-center min-h-[80vh] flex-col">
       <div className="bg-white shadow-xl p-10 rounded-[10px]">
         <h2 className="font-bold text-center text-2xl mb-8">Please Login</h2>
 
