@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD4l92xDBTr6409B0L8--VQFV-fOFF5fdM",
+  apiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   authDomain: "fir-authentication-design.firebaseapp.com",
   projectId: "fir-authentication-design",
   storageBucket: "fir-authentication-design.firebasestorage.app",
