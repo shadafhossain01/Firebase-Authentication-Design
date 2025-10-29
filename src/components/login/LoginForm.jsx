@@ -3,8 +3,10 @@ import SocialIcon from "../common/SocialIcon";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
+import { useAuthContext } from "../../context/AuthContext";
 
 const LoginForm = () => {
+  const { setUser } = useAuthContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +19,7 @@ const LoginForm = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setUser(user)
        setEmail("")
        setError("");
        setPassword("")

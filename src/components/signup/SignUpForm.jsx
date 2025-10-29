@@ -3,8 +3,10 @@ import SocialIcon from "../common/SocialIcon";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 const SignUpForm = () => {
+  const { setUser } = useAuthContext();
   const navigate=useNavigate()
   const[email,setEmail]=useState('')
   const[password,setPassword]=useState('')
@@ -17,7 +19,7 @@ const SignUpForm = () => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
-        console.log(user)
+        setUser(user)
         setError("")
         setEmail("")
         setPassword("")
@@ -66,7 +68,7 @@ const SignUpForm = () => {
             error && <p className="mb-[15px] italic text-red-700">{error}</p>
           }
 
-          {/* Login Btn */}
+          {/* Signup Btn */}
           <button className="btn bg-blue-600 block w-full p-[7px] rounded-[5px] cursor-pointer text-white"
           onClick={handleSignUp}
           >
