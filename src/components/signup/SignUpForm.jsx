@@ -1,7 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialIcon from "../common/SocialIcon";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import { useState } from "react";
 
 const SignUpForm = () => {
+  const navigate=useNavigate()
+  const[email,setEmail]=useState('')
+  const[password,setPassword]=useState('')
+  const[error,setError]=useState('')
+
+  const handleSignUp=(e)=>{
+    e.preventDefault()
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        console.log(user)
+        setError("")
+        setEmail("")
+        setPassword("")
+        navigate('/')
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage)
+      });
+
+  }
+
   return (
     <div className="flex justify-center items-center min-h-[80vh] flex-col">
       <div className="bg-white shadow-xl p-10 rounded-[10px]">
@@ -13,6 +41,8 @@ const SignUpForm = () => {
           <div className="space-y-3">
             <label className="block font-medium">Email:</label>
             <input
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
               type="email"
               placeholder="Enter your email"
               className="mb-[15px] w-[350px] border border-gray-300 focus:outline-none py-[5px] px-[15px] rounded-[5px] focus:border-blue-500"
@@ -22,18 +52,29 @@ const SignUpForm = () => {
           <div className=" space-y-3">
             <label className="block font-medium">Password:</label>
             <input
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
               type="text"
               placeholder="Enter your password"
               className="mb-[25px] w-[350px] border border-gray-300 focus:outline-none py-[5px] px-[15px] rounded-[5px] focus:border-blue-500"
             />
           </div>
+
+          {/* Error Text shown here */}
+
+          {
+            error && <p className="mb-[15px] italic text-red-700">{error}</p>
+          }
+
           {/* Login Btn */}
-          <button className="btn bg-blue-600 block w-full p-[7px] rounded-[5px] cursor-pointer text-white">
+          <button className="btn bg-blue-600 block w-full p-[7px] rounded-[5px] cursor-pointer text-white"
+          onClick={handleSignUp}
+          >
             Sign up
           </button>
         </form>
 
-        <p className="font-light text-center my-5 text-[17px]">Or Sign up with</p>
+        <p className="font-light text-center my-5 text-[12px]">Or Sign up with</p>
 
         {/* Social Icons */}
         <SocialIcon />
