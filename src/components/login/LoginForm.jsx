@@ -28,6 +28,8 @@ const LoginForm = () => {
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage)
+            setEmail("");
+            setPassword("");
       });
 
   }
