@@ -78,7 +78,7 @@ const SignUpForm = () => {
           </button>
         </form>
 
-        <p className="font-light text-center my-5 text-[12px]">
+        <p className="font-light text-center my-5 text-[17px]">
           Or Sign up with
         </p>
 
