@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SocialIcon from "../common/SocialIcon";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
-import { useAuthContext } from "../../context/AuthContext";
 
 const LoginForm = () => {
-  const { setUser } = useAuthContext();
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -16,14 +13,10 @@ const LoginForm = () => {
     e.preventDefault()
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        setUser(user)
+      .then(() => {
        setEmail("")
        setError("");
        setPassword("")
-       navigate("/");
       })
       .catch((error) => {
         const errorMessage = error.message;

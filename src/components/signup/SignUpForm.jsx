@@ -1,13 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SocialIcon from "../common/SocialIcon";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import { useState } from "react";
-import { useAuthContext } from "../../context/AuthContext";
 
 const SignUpForm = () => {
-  const { setUser } = useAuthContext();
-  const navigate=useNavigate()
   const[email,setEmail]=useState('')
   const[password,setPassword]=useState('')
   const[error,setError]=useState('')
@@ -17,14 +14,10 @@ const SignUpForm = () => {
     e.preventDefault()
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        setUser(user)
+      .then(() => {
         setError("")
         setEmail("")
         setPassword("")
-        navigate('/')
       })
       .catch((error) => {
         const errorMessage = error.message;
