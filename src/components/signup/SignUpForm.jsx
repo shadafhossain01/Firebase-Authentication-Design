@@ -12,6 +12,7 @@ const SignUpForm = () => {
   const[password,setPassword]=useState('')
   const[error,setError]=useState('')
 
+  // handle SingUp Button
   const handleSignUp=(e)=>{
     e.preventDefault()
 
@@ -45,8 +46,8 @@ const SignUpForm = () => {
           <div className="space-y-3">
             <label className="block font-medium">Email:</label>
             <input
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               placeholder="Enter your email"
               className="mb-[15px] w-[350px] border border-gray-300 focus:outline-none py-[5px] px-[15px] rounded-[5px] focus:border-blue-500"
@@ -56,8 +57,8 @@ const SignUpForm = () => {
           <div className=" space-y-3">
             <label className="block font-medium">Password:</label>
             <input
-            value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               type="text"
               placeholder="Enter your password"
               className="mb-[25px] w-[350px] border border-gray-300 focus:outline-none py-[5px] px-[15px] rounded-[5px] focus:border-blue-500"
@@ -66,22 +67,23 @@ const SignUpForm = () => {
 
           {/* Error Text shown here */}
 
-          {
-            error && <p className="mb-[15px] italic text-red-700">{error}</p>
-          }
+          {error && <p className="mb-[15px] italic text-red-700">{error}</p>}
 
           {/* Signup Btn */}
-          <button className="btn bg-blue-600 block w-full p-[7px] rounded-[5px] cursor-pointer text-white"
-          onClick={handleSignUp}
+          <button
+            className="btn bg-blue-600 block w-full p-[7px] rounded-[5px] cursor-pointer text-white"
+            onClick={handleSignUp}
           >
             Sign up
           </button>
         </form>
 
-        <p className="font-light text-center my-5 text-[12px]">Or Sign up with</p>
+        <p className="font-light text-center my-5 text-[12px]">
+          Or Sign up with
+        </p>
 
         {/* Social Icons */}
-        <SocialIcon />
+        <SocialIcon setError={setError} />
 
         <p className=" text-center mt-[27px] text-[16px]">
           Do have any account? Plaese{" "}

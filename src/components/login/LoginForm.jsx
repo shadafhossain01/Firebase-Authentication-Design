@@ -80,7 +80,7 @@ const LoginForm = () => {
         <p className="font-light text-center my-5 text-[17px]">Or login with</p>
 
         {/* Social Icons */}
-        <SocialIcon />
+        <SocialIcon setError={setError} />
 
         <p className=" text-center mt-[27px] text-[16px]">
           Don't have any account? Plaese{" "}
