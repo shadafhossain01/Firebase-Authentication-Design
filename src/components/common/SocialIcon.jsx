@@ -25,7 +25,22 @@ const SocialIcon = ({ setError }) => {
       });
   };
 
-
+  // Handle Github Btn
+  const handleGithubBtn=()=>{
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        setUser(user)
+        navigate("/");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorMessage = error.message;
+        setError(errorMessage)
+      });
+  }
 
 
   return (
