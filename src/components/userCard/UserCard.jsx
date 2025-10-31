@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const UserCard = () => {
       const { user } = useAuthContext();
@@ -24,11 +25,24 @@ const UserCard = () => {
           Dispaly Name : {user?.displayName || "User"}
         </h5>
         <h5 className="mb-4 text-xl font-medium">Email : {user?.email}</h5>
+        <h5 className="mb-4 text-xl font-medium">
+          Phone Number : {user?.phoneNumber || "+880-XXXXXXXXXX"}
+        </h5>
         <span className="text-xl font-medium">
           Email Verified : {user?.emailVerified ? "Yes" : "No"}
         </span>
 
-        <button className="bg-green-500 inline w-[30%] mt-[35px] py-[9px] font-bold text-white cursor-pointer">Edit Profile</button>
+        <div className="flex gap-x-2">
+          {/* Edit Profile Btn */}
+          <button className="bg-blue-500 inline w-[30%] mt-[35px] py-[9px] font-bold text-white cursor-pointer">
+            <Link to="/edit-profile">Edit Profile</Link>
+          </button>
+
+          {/* Update Password Btn */}
+          <button className="bg-green-700 inline w-[35%] mt-[35px] py-[9px] font-bold text-white cursor-pointer">
+            Update Password
+          </button>
+        </div>
       </div>
     </div>
   );
