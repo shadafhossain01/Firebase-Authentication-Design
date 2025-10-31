@@ -37,7 +37,7 @@ const UserCard = () => {
 
           {/* Update Password Btn */}
           <button className="bg-green-700 inline w-[35%] mt-[35px] py-[9px] font-bold text-white cursor-pointer">
-            Update Password
+            <Link to="/update-password">Update Password</Link>
           </button>
         </div>
       </div>
