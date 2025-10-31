@@ -25,9 +25,6 @@ const UserCard = () => {
           Dispaly Name : {user?.displayName || "User"}
         </h5>
         <h5 className="mb-4 text-xl font-medium">Email : {user?.email}</h5>
-        <h5 className="mb-4 text-xl font-medium">
-          Phone Number : {user?.phoneNumber || "+880-XXXXXXXXXX"}
-        </h5>
         <span className="text-xl font-medium">
           Email Verified : {user?.emailVerified ? "Yes" : "No"}
         </span>

@@ -2,7 +2,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, use, useEffect, useState } from "react" 
 import {auth} from "../firebase/firebase.config"
-import { onAuthStateChanged } from "firebase/auth"
+import { onAuthStateChanged, updateProfile } from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 
 const AuthContext=createContext()
@@ -12,7 +12,6 @@ export const AuthProvider=({children})=>{
     const [user,setUser]=useState(null)
     const [isLoading,setIsLoading]=useState(true)
     const navigate=useNavigate()
-    const value={setUser,user}
 
     useEffect(() => {
       const subscribe = onAuthStateChanged(auth, (user) => {
@@ -27,6 +26,25 @@ export const AuthProvider=({children})=>{
 
       return () => subscribe();
     }, []);
+
+    // User Profile Update functionality
+    const updateUser=(newUserData)=>{
+      updateProfile(user, {
+      ...user,...newUserData
+      })
+        .then(() => {
+                setUser((prevUser) => ({
+                  ...prevUser,
+                  ...newUserData,
+                }));
+                navigate("/")
+        })
+        .catch((error) => {
+          console.log(error.message)
+        });
+    }
+
+    const value = { setUser, user,updateUser };
 
     if(user && isLoading){
       return (

@@ -27,9 +27,6 @@ const ProfileCard = () => {
       </div>
         <div className="flex flex-col gap-2  text-gray-800 mb-4 mt-[18px]">
           <h5 className="mb-3 text-xl font-medium">Email : {user?.email}</h5>
-          <h5 className="mb-3 text-xl font-medium">
-            Phone Number : {user?.phoneNumber || "+880-XXXXXXXXXX"}
-          </h5>
           <span className="text-xl font-medium">
             Email Verified : {user?.emailVerified ? "Yes" : "No"}
           </span>
