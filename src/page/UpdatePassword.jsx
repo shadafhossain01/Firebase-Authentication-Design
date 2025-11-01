@@ -2,6 +2,7 @@ import { signOut, updatePassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuthContext } from "../context/AuthContext";
 import { auth } from "../firebase/firebase.config";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const UpdatePassword = () => {
   const { user } = useAuthContext();
@@ -9,6 +10,8 @@ const UpdatePassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleUpdatePassword = (e) => {
     e.preventDefault();
@@ -46,29 +49,68 @@ const UpdatePassword = () => {
     <div className="flex justify-center items-center h-[90vh] w-full">
       <div className=" shadow-lg p-[35px]">
         <form>
-          <div className="mb-4">
+          {/* New Password Input */}
+          <div className="mb-4 relative">
             <label className="block mb-2 font-medium text-[19px]">
               New Password :
             </label>
-            <input
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
-              type="text"
-              placeholder="Enter New Password"
-            />
+            {showNewPassword ? (
+              <input
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
+                type="text"
+                placeholder="Enter New Password"
+              />
+            ) : (
+              <input
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
+                type="password"
+                placeholder="Enter New Password"
+              />
+            )}
+
+            {/* Password Show/Hide Icon*/}
+            <span
+              onClick={() => setShowNewPassword(!showNewPassword)}
+              className="absolute right-[9px] bottom-[9px] cursor-pointer"
+            >
+              {showNewPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            </span>
           </div>
-          <div className="mb-7">
+
+          {/* Confirm Password Input */}
+          <div className="mb-7 relative">
             <label className="block mb-2 font-medium text-[19px]">
               Confirm Password :
             </label>
-            <input
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              value={confirmPassword}
-              className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
-              type="text"
-              placeholder="Confirm New Password"
-            />
+            {showConfirmPassword ? (
+              <input
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
+                type="text"
+                placeholder="Confirm New Password"
+              />
+            ) : (
+              <input
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                className=" border w-[280px] focus:outline-0 px-[7px] py-[5px] rounded-[5px] border-gray-400"
+                type="password"
+                placeholder="Confirm New Password"
+              />
+            )}
+
+            {/* Password Show/Hide Icon*/}
+            <span
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="absolute right-[9px] bottom-[9px] cursor-pointer"
+            >
+              {showConfirmPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+            </span>
           </div>
 
           {/* Message Show Here */}
