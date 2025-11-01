@@ -37,14 +37,13 @@ export const AuthProvider=({children})=>{
                   ...prevUser,
                   ...newUserData,
                 }));
-                navigate("/")
         })
         .catch((error) => {
           console.log(error.message)
         });
     }
 
-    const value = { setUser, user,updateUser };
+    const value = { setUser, user, updateUser };
 
     if(user && isLoading){
       return (
