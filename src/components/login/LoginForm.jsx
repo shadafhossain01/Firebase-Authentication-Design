@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  // handle Login Functionality
   const handleLogin=(e)=>{
     e.preventDefault()
 
@@ -81,6 +82,11 @@ const LoginForm = () => {
             Sign up
           </Link>
         </p>
+
+        {/* Reset Password */}
+        <button className=" mx-auto w-full mt-[13px] text-[16px] text-blue-500 font-medium cursor-pointer">
+          <Link to="/forgot-password">Forgot Password?</Link>
+        </button>
       </div>
     </div>
   );

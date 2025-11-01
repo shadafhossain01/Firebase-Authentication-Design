@@ -9,6 +9,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import Private from "./page/Private.jsx";
 import EditProfile from "./page/EditProfile.jsx";
 import UpdatePassword from "./page/UpdatePassword.jsx";
+import ForgotPassword from "./page/ForgotPassword.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/update-password" element={ <Private> <UpdatePassword/> </Private>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </AuthProvider>
   </BrowserRouter>
