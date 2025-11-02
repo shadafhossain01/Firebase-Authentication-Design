@@ -30,16 +30,17 @@ export const AuthProvider=({children})=>{
     // User Profile Update functionality
     const updateUser=(newUserData)=>{
       updateProfile(user, {
-      ...user,...newUserData
+        displayName: newUserData.displayName,
+        photoURL: newUserData.photoURL,
       })
         .then(() => {
-                setUser((prevUser) => ({
-                  ...prevUser,
-                  ...newUserData,
-                }));
+          setUser((prevUser) => ({
+            ...prevUser,
+            ...newUserData,
+          }));
         })
         .catch((error) => {
-          console.log(error.message)
+          console.log(error.message);
         });
     }
 
